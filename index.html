@@ -19,9 +19,9 @@
     }
 
     :root {
-      /* Light mode colors */
+      /* Updated color scheme - removed orange */
       --primary: #7d5db3;
-      --secondary: #b06ab3;
+      --secondary: #5d8db3;
       --accent: #a6c1ee;
       --text: #333;
       --text-light: #f0f0f0;
@@ -76,25 +76,25 @@
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
-      background: linear-gradient(135deg, #ff6b6b, #ffa502); /* Vibrant gradient */
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
       padding: 15px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 999;
-      backdrop-filter: none; /* Remove blur */
+      backdrop-filter: none;
     }
 
     .logo {
       font-weight: 900;
       font-size: 2rem;
       color: #fff;
-      text-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Enhanced shadow for visibility */
+      text-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
       user-select: none;
       transition: transform 0.3s;
       letter-spacing: 1px;
-      background: linear-gradient(45deg, #ffffff, #ffeb3b); /* Bright gradient */
+      background: linear-gradient(45deg, #ffffff, #e0e0ff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -134,7 +134,7 @@
       border-radius: 30px;
       transition: all 0.3s;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-      background: rgba(255,255,255,0.2); /* Semi-transparent white */
+      background: rgba(255,255,255,0.2);
       border: 2px solid rgba(255,255,255,0.3);
     }
 
@@ -168,7 +168,7 @@
     /* Download Resume Button */
     .btn-resume {
       background: #fff;
-      color: #ff6b6b;
+      color: var(--primary);
       font-weight: 700;
       padding: 12px 25px;
       border-radius: 30px;
@@ -182,7 +182,7 @@
       border: 2px solid rgba(255,255,255,0.5);
     }
     .btn-resume:hover {
-      background: #ffa502;
+      background: var(--secondary);
       color: #fff;
       cursor: pointer;
       transform: translateY(-3px) scale(1.05);
@@ -205,7 +205,7 @@
       text-align: center;
       padding: 80px 20px;
       color: #fff;
-      background: linear-gradient(135deg, #ff6b6b, #ffa502); /* Matching header */
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
       border-radius: 20px 20px 0 0;
       margin-bottom: 40px;
       position: relative;
@@ -225,7 +225,7 @@
       font-size: 3.2rem;
       margin-bottom: 20px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-      background: linear-gradient(45deg, #ffffff, #ffeb3b);
+      background: linear-gradient(45deg, #ffffff, #e0e0ff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
@@ -255,7 +255,7 @@
     }
     .hero-btn.primary {
       background: #fff;
-      color: #ff6b6b;
+      color: var(--primary);
     }
     .hero-btn.secondary {
       background: transparent;
@@ -324,26 +324,11 @@
       border: 5px solid var(--secondary);
       box-shadow: 0 10px 30px rgba(0,0,0,0.15);
       transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      background: linear-gradient(135deg, var(--secondary), var(--primary));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 6rem;
-      font-weight: 700;
-    }
-
-    .profile-img span {
-      transition: transform 0.5s;
     }
 
     .profile-img:hover {
       transform: scale(1.05) rotate(5deg);
       box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-    }
-
-    .profile-img:hover span {
-      transform: scale(1.2);
     }
 
     .social-links {
@@ -1061,11 +1046,12 @@
         </div>
       </div>
 
-      <!-- Static Profile Image -->
+      <!-- Profile Image from ImgBB -->
       <div class="profile-container">
-        <div class="profile-img">
-          <span>KU</span>
-        </div>
+        <img src="https://i.ibb.co/ynW1nP3s/profile.jpg"
+             alt="Kummari Umesh"
+             class="profile-img"
+             onerror="this.onerror=null; this.src='https://via.placeholder.com/280x280/7d5db3/ffffff?text=KU'">
       </div>
     </div>
   </section>
@@ -1175,6 +1161,29 @@
     <h2>Projects</h2>
 
     <div class="projects-grid">
+      <!-- E-commerce Website Project -->
+      <div class="project-card">
+        <div class="project-image-placeholder">
+          <div class="placeholder-content">E-Commerce Store</div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Full Stack E-Commerce Website</h3>
+          <p class="project-description">A complete e-commerce platform with product listings, shopping cart, user authentication, and payment integration.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Java</span>
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">Hibernate</span>
+            <span class="tech-tag">HTML/CSS</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">MySQL</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="project-link demo">Live Demo</a>
+            <a href="#" class="project-link code">View Code</a>
+          </div>
+        </div>
+      </div>
+
       <div class="project-card">
         <div class="project-image-placeholder">
           <div class="placeholder-content">Health Trends Tracker</div>
@@ -1187,9 +1196,6 @@
             <span class="tech-tag">Servlets</span>
             <span class="tech-tag">JSP</span>
             <span class="tech-tag">MySQL</span>
-          </div>
-          <div class="project-links">
-            <a href="#" class="project-link code">View Code</a>
           </div>
         </div>
       </div>
@@ -1208,9 +1214,6 @@
             <span class="tech-tag">Django</span>
             <span class="tech-tag">Blockchain</span>
           </div>
-          <div class="project-links">
-            <a href="#" class="project-link code">View Code</a>
-          </div>
         </div>
       </div>
 
@@ -1227,10 +1230,6 @@
             <span class="tech-tag">Hibernate</span>
             <span class="tech-tag">MySQL</span>
           </div>
-          <div class="project-links">
-            <a href="#" class="project-link demo">Live Demo</a>
-            <a href="#" class="project-link code">View Code</a>
-          </div>
         </div>
       </div>
 
@@ -1246,10 +1245,6 @@
             <span class="tech-tag">CSS</span>
             <span class="tech-tag">JavaScript</span>
             <span class="tech-tag">API Integration</span>
-          </div>
-          <div class="project-links">
-            <a href="#" class="project-link demo">Live Demo</a>
-            <a href="#" class="project-link code">View Code</a>
           </div>
         </div>
       </div>
