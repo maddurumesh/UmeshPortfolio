@@ -180,11 +180,11 @@
       gap: 8px;
       font-size: 1.05rem;
       border: 2px solid rgba(255,255,255,0.5);
+      cursor: pointer;
     }
     .btn-resume:hover {
       background: var(--secondary);
       color: #fff;
-      cursor: pointer;
       transform: translateY(-3px) scale(1.05);
       box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
@@ -641,32 +641,6 @@
       font-size: 0.9rem;
       color: var(--text);
     }
-    .project-links {
-      display: flex;
-      gap: 15px;
-    }
-    .project-link {
-      padding: 10px 18px;
-      border-radius: 8px;
-      font-size: 1rem;
-      transition: all 0.3s;
-      font-weight: 700;
-      min-width: 120px;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    .project-link.demo {
-      background: var(--secondary);
-      color: #fff;
-    }
-    .project-link.code {
-      background: var(--skill-bar);
-      color: var(--text);
-    }
-    .project-link:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.15);
-    }
 
     /* Contact Section */
     #contact {
@@ -946,17 +920,6 @@
       .hero-btn {
         min-width: 100%;
       }
-      .project-links {
-        flex-direction: column;
-      }
-      .project-link {
-        width: 100%;
-        text-align: center;
-        padding: 12px;
-        font-size: 1.1rem;
-        min-width: auto;
-        box-sizing: border-box;
-      }
     }
 
     /* Dark Mode Toggle */
@@ -1000,9 +963,9 @@
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
-  <a href="CODEGNANJAVAUMESH.pdf" download class="btn-resume" aria-label="Download Resume">
+  <button class="btn-resume" id="downloadResume" aria-label="Download Resume">
     <i class="fas fa-download"></i> Resume
-  </a>
+  </button>
 </header>
 
 <main>
@@ -1034,13 +997,13 @@
           applications with clean, maintainable code.
         </p>
         <div class="social-links">
-          <a href="https://github.com/maddurumesh/FrontEnd.git" class="social-link" aria-label="GitHub">
+          <a href="https://github.com/maddurumesh" target="_blank" class="social-link" aria-label="GitHub">
             <i class="fab fa-github"></i>
           </a>
-          <a href="https://www.linkedin.com/in/umesh-maddur" class="social-link" aria-label="LinkedIn">
+          <a href="https://www.linkedin.com/in/umesh-maddur" target="_blank" class="social-link" aria-label="LinkedIn">
             <i class="fab fa-linkedin-in"></i>
           </a>
-          <a href="https://twitter.com/example" class="social-link" aria-label="Twitter">
+          <a href="https://twitter.com/example" target="_blank" class="social-link" aria-label="Twitter">
             <i class="fab fa-twitter"></i>
           </a>
         </div>
@@ -1177,10 +1140,6 @@
             <span class="tech-tag">JavaScript</span>
             <span class="tech-tag">MySQL</span>
           </div>
-          <div class="project-links">
-            <a href="#" class="project-link demo">Live Demo</a>
-            <a href="#" class="project-link code">View Code</a>
-          </div>
         </div>
       </div>
 
@@ -1289,7 +1248,7 @@
           </div>
           <div class="contact-details">
             <h3>LinkedIn</h3>
-            <p>linkedin.com/in/umesh-maddur</p>
+            <p><a href="https://www.linkedin.com/in/umesh-maddur" target="_blank" style="color: var(--text);">linkedin.com/in/umesh-maddur</a></p>
           </div>
         </div>
         <div class="contact-item">
@@ -1298,7 +1257,7 @@
           </div>
           <div class="contact-details">
             <h3>GitHub</h3>
-            <p>github.com/maddurumesh/FrontEnd</p>
+            <p><a href="https://github.com/maddurumesh" target="_blank" style="color: var(--text);">github.com/maddurumesh</a></p>
           </div>
         </div>
       </div>
@@ -1515,6 +1474,30 @@
         });
       }
     });
+  });
+
+  // Resume Download Functionality
+  document.getElementById('downloadResume').addEventListener('click', function() {
+    // Create a temporary link element
+    const link = document.createElement('a');
+
+    // Use the direct download link for Google Drive
+    link.href = 'https://drive.google.com/uc?export=download&id=1SAAFR8JNHPR6C35p1kgGw_3DcerPWMx1';
+    link.target = '_blank';
+    link.download = 'Kummari_Umesh_Resume.pdf';
+
+    // Append to the body, click and remove
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+    // Optional: Track the download event
+    console.log('Resume download initiated');
+
+    // Fallback: Open in new tab if download doesn't start
+    setTimeout(() => {
+      window.open('https://drive.google.com/file/d/1SAAFR8JNHPR6C35p1kgGw_3DcerPWMx1/view?usp=sharing', '_blank');
+    }, 1000);
   });
 </script>
 
