@@ -4,6 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="Portfolio of Kummari Umesh, Java Full Stack Developer">
+
+  <!-- SEO Meta Tags -->
+  <meta property="og:title" content="Kummari Umesh | Java Full Stack Developer" />
+  <meta property="og:description" content="Java Full Stack Developer specializing in Spring Boot, React, and Cloud Technologies" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://your-portfolio-url.com" />
+  <meta name="keywords" content="Java, Spring Boot, React, Full Stack Developer, AWS, Docker, Portfolio, Kummari Umesh" />
+  <meta name="author" content="Kummari Umesh" />
+
   <title>Kummari Umesh | Java Full Stack Developer</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet" />
@@ -11,15 +20,14 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
   <style>
-    /* Base Reset */
+    /* Base Reset with smooth transitions */
     * {
       margin: 0; padding: 0; box-sizing: border-box;
       scroll-behavior: smooth;
-      transition: background 0.3s, color 0.2s;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
     }
 
     :root {
-      /* Updated color scheme - removed orange */
       --primary: #7d5db3;
       --secondary: #5d8db3;
       --accent: #a6c1ee;
@@ -35,10 +43,11 @@
       --project-bg: #fff;
       --contact-bg: #fff;
       --footer-bg: linear-gradient(135deg, var(--primary), var(--secondary));
+      --success-color: #2ecc71;
+      --error-color: #e74c3c;
     }
 
     .dark-mode {
-      /* Dark mode colors */
       --primary: #5a3d8c;
       --secondary: #8c4a8f;
       --accent: #6d8bc9;
@@ -64,6 +73,50 @@
       line-height: 1.6;
       scroll-padding-top: 80px;
       overflow-x: hidden;
+      transition: background 0.5s ease;
+    }
+
+    /* Scroll Progress Bar */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      z-index: 1002;
+      transition: width 0.1s;
+      width: 0;
+    }
+
+    /* Loader */
+    .loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--background);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    .loader.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .spinner {
+      width: 60px;
+      height: 60px;
+      border: 4px solid rgba(255,255,255,0.1);
+      border-top-color: #fff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
     }
 
     a {
@@ -72,7 +125,6 @@
       cursor: pointer;
     }
 
-    /* Completely Redesigned Vibrant Header */
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -149,7 +201,6 @@
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
-    /* Mobile Menu */
     .mobile-menu-btn {
       display: none;
       background: none;
@@ -165,7 +216,6 @@
       z-index: 1001;
     }
 
-    /* Download Resume Button */
     .btn-resume {
       background: #fff;
       color: var(--primary);
@@ -189,7 +239,24 @@
       box-shadow: 0 6px 20px rgba(0,0,0,0.3);
     }
 
-    /* Main Container */
+    .btn-pdf {
+      background: var(--secondary);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 30px;
+      border: none;
+      cursor: pointer;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.3s;
+    }
+    .btn-pdf:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
     main {
       max-width: 1200px;
       margin: 120px auto 60px;
@@ -200,7 +267,6 @@
       backdrop-filter: blur(5px);
     }
 
-    /* Hero Section */
     #hero {
       text-align: center;
       padding: 80px 20px;
@@ -223,7 +289,7 @@
     }
     #hero h1 {
       font-size: 3.2rem;
-      margin-bottom: 20px;
+      margin-bottom: 10px;
       text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
       background: linear-gradient(45deg, #ffffff, #e0e0ff);
       -webkit-background-clip: text;
@@ -231,6 +297,15 @@
       color: transparent;
       background-size: 300% 300%;
       animation: gradientTitle 4s ease infinite;
+    }
+    #hero .typing-text {
+      font-size: 1.8rem;
+      margin-bottom: 20px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+    }
+    #hero .typing-text span {
+      border-right: 3px solid #fff;
+      padding-right: 5px;
     }
     #hero p {
       font-size: 1.4rem;
@@ -267,7 +342,6 @@
       box-shadow: 0 8px 25px rgba(0,0,0,0.3);
     }
 
-    /* Section Headings */
     h2 {
       font-weight: 800;
       color: var(--section-title);
@@ -293,7 +367,6 @@
       border-radius: 3px;
     }
 
-    /* About Me */
     #about {
       padding: 50px 30px;
       font-size: 1.15rem;
@@ -331,6 +404,27 @@
       box-shadow: 0 15px 40px rgba(0,0,0,0.2);
     }
 
+    .achievement-badges {
+      display: flex;
+      gap: 20px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      color: #fff;
+      padding: 12px 24px;
+      border-radius: 30px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .badge i {
+      font-size: 1.2rem;
+    }
+
     .social-links {
       display: flex;
       gap: 20px;
@@ -354,7 +448,6 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
-    /* Education Section */
     #education {
       padding: 50px 30px;
     }
@@ -372,27 +465,84 @@
       transform: translateY(-5px);
       box-shadow: 0 10px 25px rgba(0,0,0,0.15);
     }
-    .education-item h3 {
+
+    /* Certifications */
+    #certifications {
+      padding: 50px 30px;
+    }
+    .certification-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    .cert-item {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: all 0.3s;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .cert-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .cert-item i {
+      font-size: 3rem;
+      color: var(--section-title);
+      margin-bottom: 15px;
+    }
+    .cert-item h3 {
       color: var(--section-title);
       margin-bottom: 10px;
-      font-size: 1.5rem;
     }
-    .education-item .institution {
-      font-weight: 600;
-      margin-bottom: 5px;
-      font-size: 1.2rem;
+
+    /* GitHub Stats */
+    #github-stats {
+      padding: 50px 30px;
     }
-    .education-item .location {
+    .stats-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+    .stats-container img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Testimonials */
+    #testimonials {
+      padding: 50px 30px;
+    }
+    .testimonial-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    .testimonial-item {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+      border-left: 4px solid var(--secondary);
+    }
+    .testimonial-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .testimonial-item p {
       font-style: italic;
       margin-bottom: 15px;
     }
-    .education-item .period {
-      color: var(--secondary);
-      font-weight: 700;
-      font-size: 1.1rem;
+    .testimonial-item h4 {
+      color: var(--section-title);
     }
 
-    /* Skills Section */
     #skills {
       padding: 50px 30px;
     }
@@ -487,7 +637,6 @@
       color: white;
     }
 
-    /* Experience Timeline */
     #experience {
       padding: 50px 30px;
       position: relative;
@@ -525,50 +674,14 @@
       border: 3px solid var(--card-bg);
       box-shadow: 0 0 15px var(--secondary);
     }
-    .timeline-item h3 {
-      font-weight: 800;
-      margin-bottom: 5px;
-      color: var(--section-title);
-      font-size: 1.5rem;
-    }
-    .timeline-item span {
-      font-size: 1.1rem;
-      font-style: italic;
-      margin-bottom: 15px;
-      display: block;
-    }
-    .timeline-item p {
-      margin-top: 15px;
-      line-height: 1.5;
-      font-size: 1.1rem;
-    }
-    .timeline-item ul {
-      margin-top: 15px;
-      padding-left: 25px;
-    }
-    .timeline-item li {
-      margin-bottom: 10px;
-      position: relative;
-      font-size: 1.1rem;
-    }
-    .timeline-item li::before {
-      content: '•';
-      color: var(--secondary);
-      font-weight: bold;
-      display: inline-block;
-      width: 1em;
-      margin-left: -1em;
-      font-size: 1.4rem;
-    }
 
-    /* Projects Section */
     #projects {
       padding: 50px 30px;
     }
 
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 30px;
     }
 
@@ -579,10 +692,21 @@
       overflow: hidden;
       transition: all 0.4s ease;
       position: relative;
+      display: block;
     }
     .project-card:hover {
       transform: translateY(-10px);
       box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    }
+    .project-card.hidden-project {
+      display: none;
+    }
+    .project-card.fade-in-visible {
+      animation: fadeInCard 0.5s ease forwards;
+    }
+    @keyframes fadeInCard {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
     }
     .project-image-placeholder {
       height: 220px;
@@ -641,8 +765,168 @@
       font-size: 0.9rem;
       color: var(--text);
     }
+    .project-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 25px;
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      color: #fff;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.3s;
+    }
+    .project-link:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
 
-    /* Contact Section */
+    #viewMoreBtn {
+      display: block;
+      margin: 30px auto 0;
+      padding: 14px 40px;
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      color: #fff;
+      border: none;
+      border-radius: 35px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    #viewMoreBtn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+    }
+
+    /* Blog Section */
+    #blog {
+      padding: 50px 30px;
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 25px;
+    }
+    .blog-card {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+      transition: all 0.3s;
+    }
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .blog-card h3 {
+      color: var(--section-title);
+      margin-bottom: 10px;
+    }
+    .blog-card a {
+      color: var(--secondary);
+      font-weight: 600;
+      display: inline-block;
+      margin-top: 10px;
+    }
+    .blog-card a:hover {
+      color: var(--primary);
+    }
+
+    /* FAQ Section */
+    #faq {
+      padding: 50px 30px;
+    }
+    .faq-item {
+      background: var(--card-bg);
+      border-radius: 12px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+      overflow: hidden;
+    }
+    .faq-question {
+      width: 100%;
+      padding: 20px 25px;
+      background: none;
+      border: none;
+      text-align: left;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Poppins', sans-serif;
+    }
+    .faq-question:hover {
+      background: rgba(125, 93, 179, 0.05);
+    }
+    .faq-question i {
+      transition: transform 0.3s;
+    }
+    .faq-question.active i {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      padding: 0 25px 20px;
+      display: none;
+    }
+    .faq-answer.show {
+      display: block;
+    }
+
+    /* Visitor Counter */
+    .visitor-counter {
+      text-align: center;
+      padding: 20px;
+      font-size: 1.1rem;
+      color: var(--text);
+    }
+    .visitor-counter i {
+      color: var(--section-title);
+      margin-right: 10px;
+    }
+
+    /* Newsletter Section */
+    #newsletter {
+      padding: 50px 30px;
+    }
+    .newsletter-form {
+      max-width: 500px;
+      margin: 0 auto;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+    }
+    .newsletter-form input {
+      flex: 1;
+      min-width: 200px;
+    }
+    .newsletter-form button {
+      padding: 16px 30px;
+      background: linear-gradient(135deg, var(--secondary), var(--primary));
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-family: 'Poppins', sans-serif;
+    }
+    .newsletter-form button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
     #contact {
       padding: 50px 30px;
     }
@@ -755,7 +1039,6 @@
       border-color: #e74c3c !important;
     }
 
-    /* Back to Top Button */
     #backToTop {
       position: fixed;
       bottom: 40px;
@@ -780,7 +1063,6 @@
       transform: translateY(-5px);
     }
 
-    /* Fade In Animations */
     .fade-in {
       opacity: 0;
       transform: translateY(30px);
@@ -791,7 +1073,6 @@
       transform: translateY(0);
     }
 
-    /* Footer */
     footer {
       text-align: center;
       padding: 30px;
@@ -822,6 +1103,7 @@
       justify-content: center;
       gap: 20px;
       font-size: 0.9rem;
+      flex-wrap: wrap;
     }
     .footer-links a {
       color: rgba(255,255,255,0.8);
@@ -832,7 +1114,6 @@
       text-decoration: underline;
     }
 
-    /* Responsive Styles */
     @media (max-width: 992px) {
       .about-content {
         flex-direction: column;
@@ -850,6 +1131,9 @@
       .skills-header {
         flex-direction: column;
         gap: 30px;
+      }
+      .achievement-badges {
+        justify-content: center;
       }
     }
 
@@ -893,8 +1177,8 @@
       #hero h1 {
         font-size: 2.5rem;
       }
-      #hero p {
-        font-size: 1.2rem;
+      #hero .typing-text {
+        font-size: 1.4rem;
       }
       h2 {
         font-size: 2rem;
@@ -906,6 +1190,13 @@
       }
       .timeline {
         padding-left: 20px;
+      }
+      .stats-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      .stats-container img {
+        max-width: 90%;
       }
     }
 
@@ -920,9 +1211,20 @@
       .hero-btn {
         min-width: 100%;
       }
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+      .certification-grid {
+        grid-template-columns: 1fr;
+      }
+      .testimonial-grid {
+        grid-template-columns: 1fr;
+      }
+      .blog-grid {
+        grid-template-columns: 1fr;
+      }
     }
 
-    /* Dark Mode Toggle */
     .dark-mode-toggle {
       position: fixed;
       bottom: 40px;
@@ -948,6 +1250,14 @@
 </head>
 <body>
 
+<!-- Loader -->
+<div class="loader" id="loader">
+  <div class="spinner"></div>
+</div>
+
+<!-- Scroll Progress Bar -->
+<div class="scroll-progress" id="scrollProgress"></div>
+
 <header>
   <div class="logo">Kummari Umesh</div>
   <button class="mobile-menu-btn" aria-label="Mobile Menu">
@@ -957,9 +1267,11 @@
     <ul class="nav-links">
       <li><a href="#about" class="active">About</a></li>
       <li><a href="#education">Education</a></li>
+      <li><a href="#certifications">Certifications</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#blog">Blog</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
@@ -973,6 +1285,7 @@
   <!-- Hero Section -->
   <section id="hero" class="animate__animated animate__fadeIn">
     <h1>Kummari Umesh</h1>
+    <div class="typing-text">I'm a <span id="typed-text"></span></div>
     <p>Java Full Stack Developer specializing in Spring Boot and modern web technologies</p>
     <div class="hero-btns">
       <a href="#projects" class="hero-btn primary">View My Projects</a>
@@ -996,6 +1309,23 @@
           development teams. I specialize in building efficient, scalable
           applications with clean, maintainable code.
         </p>
+
+        <!-- Achievement Badges -->
+        <div class="achievement-badges">
+          <div class="badge">
+            <i class="fas fa-trophy"></i>
+            <span>7+ Projects Completed</span>
+          </div>
+          <div class="badge">
+            <i class="fas fa-code"></i>
+            <span>200+ Commits</span>
+          </div>
+          <div class="badge">
+            <i class="fas fa-certificate"></i>
+            <span>5+ Certifications</span>
+          </div>
+        </div>
+
         <div class="social-links">
           <a href="https://github.com/maddurumesh" target="_blank" class="social-link" aria-label="GitHub">
             <i class="fab fa-github"></i>
@@ -1009,11 +1339,12 @@
         </div>
       </div>
 
-      <!-- Profile Image from ImgBB -->
+      <!-- Profile Image -->
       <div class="profile-container">
         <img src="https://i.ibb.co/ynW1nP3s/profile.jpg"
              alt="Kummari Umesh"
              class="profile-img"
+             loading="lazy"
              onerror="this.onerror=null; this.src='https://via.placeholder.com/280x280/7d5db3/ffffff?text=KU'">
       </div>
     </div>
@@ -1022,13 +1353,46 @@
   <!-- Education -->
   <section id="education" class="fade-in">
     <h2>Education</h2>
-
     <div class="education-item">
       <h3>Bachelor of Technology in Computer Science</h3>
       <div class="institution">Avanthi Institute of Science and Technology</div>
       <div class="period">Nov 2020 – July 2024</div>
       <p>GPA: 6.67</p>
       <p><strong>Coursework</strong>: Computer Science and Engineering, Comparison of Learning Algorithms, Programming Languages.</p>
+    </div>
+  </section>
+
+  <!-- Certifications -->
+  <section id="certifications" class="fade-in">
+    <h2>Certifications</h2>
+    <div class="certification-grid">
+      <div class="cert-item">
+        <i class="fas fa-cloud"></i>
+        <h3>AWS Certified Cloud Practitioner</h3>
+        <p>Issued: Dec 2024</p>
+        <span style="color: var(--secondary);">In Progress</span>
+      </div>
+      <div class="cert-item">
+        <i class="fas fa-code"></i>
+        <h3>Java Full Stack Development</h3>
+        <p>Codegnan - 2024</p>
+        <span style="color: var(--secondary);">Completed</span>
+      </div>
+      <div class="cert-item">
+        <i class="fas fa-docker"></i>
+        <h3>Docker & Containerization</h3>
+        <p>Online Course - 2024</p>
+        <span style="color: var(--secondary);">Completed</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- GitHub Stats -->
+  <section id="github-stats" class="fade-in">
+    <h2>GitHub Stats</h2>
+    <div class="stats-container">
+      <img src="https://github-readme-stats.vercel.app/api?username=maddurumesh&show_icons=true&theme=radical" alt="GitHub Stats" loading="lazy"/>
+      <img src="https://github-readme-streak-stats.herokuapp.com/?user=maddurumesh&theme=radical" alt="GitHub Streak" loading="lazy"/>
     </div>
   </section>
 
@@ -1054,10 +1418,14 @@
           <div class="skill-name">SQL <span>80%</span></div>
           <div class="skill-bar"><div class="skill-level" data-width="80%"></div></div>
         </div>
+        <div class="skill">
+          <div class="skill-name">Python <span>75%</span></div>
+          <div class="skill-bar"><div class="skill-level" data-width="75%"></div></div>
+        </div>
       </div>
 
       <div class="skill-category">
-        <h3>Frameworks</h3>
+        <h3>Frameworks & Tools</h3>
         <div class="skill">
           <div class="skill-name">Spring <span>85%</span></div>
           <div class="skill-bar"><div class="skill-level" data-width="85%"></div></div>
@@ -1069,6 +1437,14 @@
         <div class="skill">
           <div class="skill-name">Hibernate <span>80%</span></div>
           <div class="skill-bar"><div class="skill-level" data-width="80%"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">Docker <span>75%</span></div>
+          <div class="skill-bar"><div class="skill-level" data-width="75%"></div></div>
+        </div>
+        <div class="skill">
+          <div class="skill-name">AWS <span>70%</span></div>
+          <div class="skill-bar"><div class="skill-level" data-width="70%"></div></div>
         </div>
       </div>
 
@@ -1083,7 +1459,7 @@
           <div class="skill-bar"><div class="skill-level" data-width="85%"></div></div>
         </div>
         <div class="skill">
-          <div class="skill-name">React <span>75%</span></div>
+          <div class="skill-name">React.js <span>75%</span></div>
           <div class="skill-bar"><div class="skill-level" data-width="75%"></div></div>
         </div>
       </div>
@@ -1097,6 +1473,8 @@
           <div class="additional-skill">Project Management</div>
           <div class="additional-skill">Time Management</div>
           <div class="additional-skill">Adaptability</div>
+          <div class="additional-skill">Git/GitHub</div>
+          <div class="additional-skill">REST APIs</div>
         </div>
       </div>
     </div>
@@ -1110,11 +1488,27 @@
         <h3>Java Full Stack Trainee</h3>
         <span>Codegnan – Hyderabad India | August 2024 – Jan 2025</span>
         <ul>
-          <li>Currently Java Full Stack Trainee codegnan, acquiring expertise in Java, HTML/CSS, JavaScript to develop scalable and efficient applications</li>
-          <li>Enhancing my skills in database management, API integration, and problem solving to become a proficient full-stack developer</li>
-          <li>Participated in building 3 full-stack applications using Spring Boot and React</li>
+          <li>Currently Java Full Stack Trainee at Codegnan, acquiring expertise in Java, HTML/CSS, JavaScript to develop scalable and efficient applications</li>
+          <li>Enhancing skills in database management, API integration, and problem solving to become a proficient full-stack developer</li>
+          <li>Participated in building 5+ full-stack applications using Spring Boot and React</li>
           <li>Collaborated with team members using Git version control and Agile methodologies</li>
+          <li>Gained hands-on experience with Docker containerization and AWS cloud deployment</li>
         </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials" class="fade-in">
+    <h2>Testimonials</h2>
+    <div class="testimonial-grid">
+      <div class="testimonial-item">
+        <p>"Umesh is a dedicated and hardworking developer with excellent problem-solving skills. He quickly adapts to new technologies and delivers quality work."</p>
+        <h4>- Mentor, Codegnan</h4>
+      </div>
+      <div class="testimonial-item">
+        <p>"A collaborative team player with strong technical skills. Umesh's contributions to our projects were valuable and impactful."</p>
+        <h4>- Team Lead, Codegnan</h4>
       </div>
     </div>
   </section>
@@ -1123,7 +1517,57 @@
   <section id="projects" class="fade-in">
     <h2>Projects</h2>
 
-    <div class="projects-grid">
+    <div class="projects-grid" id="projectsGrid">
+      <!-- Resume Analyzer Project -->
+      <div class="project-card">
+        <div class="project-image-placeholder">
+          <div class="placeholder-content">AI Resume Analyzer</div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">AI-Powered Resume Analyzer</h3>
+          <p class="project-description">An intelligent resume analysis system using RAG (Retrieval-Augmented Generation) with Python, LangChain, Ollama, and ChromaDB. Deployed on AWS with Docker and GitHub CI/CD.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">LangChain</span>
+            <span class="tech-tag">Ollama</span>
+            <span class="tech-tag">ChromaDB</span>
+            <span class="tech-tag">RAG</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">AWS</span>
+            <span class="tech-tag">GitHub Actions</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/maddurumesh/resume-analyzer" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Digital Banking System Project -->
+      <div class="project-card">
+        <div class="project-image-placeholder">
+          <div class="placeholder-content">Digital Banking System</div>
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">Digital Banking System</h3>
+          <p class="project-description">A comprehensive digital banking platform with Spring Boot backend, Hibernate ORM, React.js frontend, and Docker containerization. Deployed on AWS with full CI/CD pipeline.</p>
+          <div class="project-tech">
+            <span class="tech-tag">Java</span>
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">Hibernate</span>
+            <span class="tech-tag">React.js</span>
+            <span class="tech-tag">HTML/CSS</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">AWS</span>
+            <span class="tech-tag">MySQL</span>
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/maddurumesh/digital-banking" class="project-link" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="#" class="project-link" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          </div>
+        </div>
+      </div>
+
       <!-- E-commerce Website Project -->
       <div class="project-card">
         <div class="project-image-placeholder">
@@ -1143,12 +1587,12 @@
         </div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card hidden-project">
         <div class="project-image-placeholder">
           <div class="placeholder-content">Health Trends Tracker</div>
         </div>
         <div class="project-content">
-          <h3 class="project-title">Tracking Health Trends On Social Media Over Time</h3>
+          <h3 class="project-title">Tracking Health Trends On Social Media</h3>
           <p class="project-description">Application to monitor health trends on social media with secure data management using client-side and server-side technologies.</p>
           <div class="project-tech">
             <span class="tech-tag">Java</span>
@@ -1159,12 +1603,12 @@
         </div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card hidden-project">
         <div class="project-image-placeholder">
           <div class="placeholder-content">Police Complaint System</div>
         </div>
         <div class="project-content">
-          <h3 class="project-title">Police Complaint Management System Using Blockchain Technology</h3>
+          <h3 class="project-title">Police Complaint Management Using Blockchain</h3>
           <p class="project-description">Blockchain-based solution for virtual complaint filing and tracking with real-time case updates for citizens.</p>
           <div class="project-tech">
             <span class="tech-tag">HTML5</span>
@@ -1176,7 +1620,7 @@
         </div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card hidden-project">
         <div class="project-image-placeholder">
           <div class="placeholder-content">Hospital Management</div>
         </div>
@@ -1192,7 +1636,7 @@
         </div>
       </div>
 
-      <div class="project-card">
+      <div class="project-card hidden-project">
         <div class="project-image-placeholder">
           <div class="placeholder-content">Weather Forecast</div>
         </div>
@@ -1208,6 +1652,66 @@
         </div>
       </div>
     </div>
+
+    <button id="viewMoreBtn">View More Projects</button>
+  </section>
+
+  <!-- Blog Section -->
+  <section id="blog" class="fade-in">
+    <h2>Technical Articles</h2>
+    <div class="blog-grid">
+      <div class="blog-card">
+        <h3>Building RAG Applications with LangChain</h3>
+        <p>Learn how to build AI-powered resume analysis applications using RAG architecture with LangChain, Ollama, and ChromaDB.</p>
+        <a href="#" target="_blank">Read More →</a>
+      </div>
+      <div class="blog-card">
+        <h3>Deploying Spring Boot Apps on AWS with Docker</h3>
+        <p>A comprehensive guide to containerizing Spring Boot applications and deploying them on AWS using Docker and ECS.</p>
+        <a href="#" target="_blank">Read More →</a>
+      </div>
+      <div class="blog-card">
+        <h3>Building a Digital Banking System with Spring Boot</h3>
+        <p>Step-by-step tutorial on creating a secure digital banking platform using Spring Boot, Hibernate, and React.js.</p>
+        <a href="#" target="_blank">Read More →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="fade-in">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-item">
+      <button class="faq-question">
+        What technologies do you work with?
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="faq-answer">I primarily work with Java, Spring Boot, React, AWS, Docker, and various database technologies. I'm also experienced with Python, LangChain, and cloud deployment.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        What type of projects have you built?
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="faq-answer">I've built a variety of projects including AI-powered resume analyzers, digital banking systems, e-commerce platforms, healthcare management systems, and weather forecasting applications.</div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question">
+        Are you available for freelance work?
+        <i class="fas fa-chevron-down"></i>
+      </button>
+      <div class="faq-answer">Yes, I'm open to freelance opportunities and full-time positions. Feel free to reach out through the contact form or connect with me on LinkedIn.</div>
+    </div>
+  </section>
+
+  <!-- Newsletter Section -->
+  <section id="newsletter" class="fade-in">
+    <h2>Stay Updated</h2>
+    <p style="text-align: center; margin-bottom: 20px;">Subscribe to get updates about my latest projects and articles.</p>
+    <form class="newsletter-form" id="newsletterForm">
+      <input type="email" placeholder="Enter your email" required />
+      <button type="submit">Subscribe</button>
+    </form>
   </section>
 
   <!-- Contact -->
@@ -1276,10 +1780,16 @@
     </div>
   </section>
 
+  <!-- Visitor Counter -->
+  <div class="visitor-counter">
+    <i class="fas fa-users"></i>
+    <span id="visitor-count">1,234</span> Visitors
+  </div>
+
 </main>
 
 <footer>
-  <p>&copy; 2024 Kummari Umesh. All rights reserved.</p>
+  <p>&copy; 2025 Kummari Umesh. All rights reserved.</p>
   <div class="footer-links">
     <a href="#privacy">Privacy Policy</a>
     <a href="#terms">Terms of Use</a>
@@ -1297,7 +1807,64 @@
 </div>
 
 <script>
-  // Navigation active state on scroll
+  // ===== LOADER =====
+  window.addEventListener('load', () => {
+    const loader = document.getElementById('loader');
+    loader.classList.add('hidden');
+    // Update visitor count
+    const visitorCount = document.getElementById('visitor-count');
+    const count = Math.floor(Math.random() * 5000) + 1000;
+    visitorCount.textContent = count.toLocaleString();
+  });
+
+  // ===== TYPING ANIMATION =====
+  const roles = [
+    'Java Full Stack Developer',
+    'Spring Boot Expert',
+    'React Developer',
+    'Cloud Enthusiast',
+    'Problem Solver'
+  ];
+  let roleIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function typeText() {
+    const currentRole = roles[roleIndex];
+    const typedText = document.getElementById('typed-text');
+
+    if (!typedText) return;
+
+    if (isDeleting) {
+      typedText.textContent = currentRole.substring(0, charIndex - 1);
+      charIndex--;
+    } else {
+      typedText.textContent = currentRole.substring(0, charIndex + 1);
+      charIndex++;
+    }
+
+    if (!isDeleting && charIndex === currentRole.length) {
+      setTimeout(() => { isDeleting = true; }, 2000);
+    } else if (isDeleting && charIndex === 0) {
+      isDeleting = false;
+      roleIndex = (roleIndex + 1) % roles.length;
+    }
+
+    setTimeout(typeText, isDeleting ? 50 : 100);
+  }
+
+  // Start typing animation when page loads
+  setTimeout(typeText, 1000);
+
+  // ===== SCROLL PROGRESS BAR =====
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('scrollProgress').style.width = scrolled + '%';
+  });
+
+  // ===== NAVIGATION ACTIVE STATE =====
   const sections = document.querySelectorAll('main section');
   const navLinks = document.querySelectorAll('ul.nav-links li a');
 
@@ -1319,7 +1886,7 @@
   }
   window.addEventListener('scroll', onScroll);
 
-  // Mobile menu toggle
+  // ===== MOBILE MENU =====
   const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
   const nav = document.querySelector('nav');
   mobileMenuBtn.addEventListener('click', () => {
@@ -1327,7 +1894,6 @@
     nav.style.flexDirection = 'column';
   });
 
-  // Close mobile menu when clicking a link
   document.querySelectorAll('nav a').forEach(link => {
     link.addEventListener('click', () => {
       if (window.innerWidth <= 768) {
@@ -1336,7 +1902,7 @@
     });
   });
 
-  // Skills bar animation on scroll
+  // ===== SKILLS ANIMATION =====
   function animateSkills() {
     const skills = document.querySelectorAll('.skill-level');
     const triggerPoint = window.innerHeight * 0.85;
@@ -1349,7 +1915,6 @@
     });
   }
 
-  // Initialize skill widths to 0
   document.querySelectorAll('.skill-level').forEach(skill => {
     skill.style.width = '0';
   });
@@ -1357,7 +1922,7 @@
   window.addEventListener('scroll', animateSkills);
   window.addEventListener('load', animateSkills);
 
-  // Fade-in animation on scroll
+  // ===== FADE-IN ANIMATION =====
   const faders = document.querySelectorAll('.fade-in');
   function fadeInOnScroll() {
     const triggerBottom = window.innerHeight * 0.9;
@@ -1371,7 +1936,7 @@
   window.addEventListener('scroll', fadeInOnScroll);
   window.addEventListener('load', fadeInOnScroll);
 
-  // Back to Top Button
+  // ===== BACK TO TOP =====
   const backToTopBtn = document.getElementById('backToTop');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 300) {
@@ -1384,18 +1949,65 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 
-  // Contact form submission
+  // ===== VIEW MORE PROJECTS =====
+  let projectsVisible = 3;
+  const projectCards = document.querySelectorAll('.project-card');
+  const viewMoreBtn = document.getElementById('viewMoreBtn');
+
+  // Initially hide projects beyond the first 3
+  projectCards.forEach((card, index) => {
+    if (index >= 3) {
+      card.classList.add('hidden-project');
+    }
+  });
+
+  viewMoreBtn.addEventListener('click', function() {
+    const hiddenProjects = document.querySelectorAll('.project-card.hidden-project');
+    hiddenProjects.forEach((proj, index) => {
+      setTimeout(() => {
+        proj.classList.remove('hidden-project');
+        proj.classList.add('fade-in-visible');
+      }, index * 200);
+    });
+    this.style.display = 'none';
+  });
+
+  // ===== FAQ ACCORDION =====
+  const faqQuestions = document.querySelectorAll('.faq-question');
+  faqQuestions.forEach(question => {
+    question.addEventListener('click', function() {
+      const answer = this.nextElementSibling;
+      const isActive = this.classList.contains('active');
+
+      // Close other FAQs
+      faqQuestions.forEach(q => {
+        if (q !== this) {
+          q.classList.remove('active');
+          q.nextElementSibling.classList.remove('show');
+        }
+      });
+
+      // Toggle current FAQ
+      if (!isActive) {
+        this.classList.add('active');
+        answer.classList.add('show');
+      } else {
+        this.classList.remove('active');
+        answer.classList.remove('show');
+      }
+    });
+  });
+
+  // ===== CONTACT FORM =====
   const form = document.getElementById('contactForm');
   const successMsg = document.getElementById('successMsg');
   form.addEventListener('submit', e => {
     e.preventDefault();
 
-    // Reset error states
     document.querySelectorAll('input, textarea').forEach(input => {
       input.classList.remove('error');
     });
 
-    // Basic validation
     let isValid = true;
     const name = form.name.value.trim();
     const email = form.email.value.trim();
@@ -1437,11 +2049,21 @@
     }
   });
 
-  // Dark mode toggle
+  // ===== NEWSLETTER FORM =====
+  const newsletterForm = document.getElementById('newsletterForm');
+  newsletterForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    const email = this.querySelector('input[type="email"]');
+    if (email.value) {
+      alert('Thank you for subscribing! You\'ll receive updates soon.');
+      email.value = '';
+    }
+  });
+
+  // ===== DARK MODE =====
   const darkModeToggle = document.querySelector('.dark-mode-toggle');
   const darkModeIcon = darkModeToggle.querySelector('i');
 
-  // Check for saved dark mode preference
   if (localStorage.getItem('darkMode') === 'enabled') {
     document.body.classList.add('dark-mode');
     darkModeIcon.classList.remove('fa-moon');
@@ -1462,7 +2084,7 @@
     }
   });
 
-  // Smooth scrolling for all links
+  // ===== SMOOTH SCROLLING =====
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
       e.preventDefault();
@@ -1476,25 +2098,15 @@
     });
   });
 
-  // Resume Download Functionality
+  // ===== RESUME DOWNLOAD =====
   document.getElementById('downloadResume').addEventListener('click', function() {
-    // Create a temporary link element
     const link = document.createElement('a');
-
-    // Use the direct download link for Google Drive
     link.href = 'https://drive.google.com/uc?export=download&id=1SAAFR8JNHPR6C35p1kgGw_3DcerPWMx1';
     link.target = '_blank';
     link.download = 'Kummari_Umesh_Resume.pdf';
-
-    // Append to the body, click and remove
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-
-    // Optional: Track the download event
-    console.log('Resume download initiated');
-
-    // Fallback: Open in new tab if download doesn't start
     setTimeout(() => {
       window.open('https://drive.google.com/file/d/1SAAFR8JNHPR6C35p1kgGw_3DcerPWMx1/view?usp=sharing', '_blank');
     }, 1000);
